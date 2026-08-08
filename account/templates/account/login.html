@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول | Glamour Makeup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="brand-header">
+                <h1>Glamour Makeup</h1>
+                <p>تسجيل الدخول للنظام (أدمن / عميلات)</p>
+            </div>
+
+            {% if error %}
+                <p style="color: red; margin-bottom: 15px; font-size: 13px;">{{ error }}</p>
+            {% endif %}
+
+            <div class="register-link">
+                ليس لديكِ حساب؟ <a href="{% url 'register' %}">إنشاء حساب جديد (عميلة)</a>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label>اسم المستخدم:</label>
+                    <input type="text" name="username" placeholder="أدخلي اسم المستخدم" required>
+                </div>
+
+                <div class="input-group">
+                    <label>كلمة المرور:</label>
+                    <input type="password" name="password" placeholder="أدخلي كلمة المرور" required>
+                </div>
+
+                <button type="submit" class="btn-beauty">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

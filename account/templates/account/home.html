@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجاتنا | متجر Glamour Makeup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+    <style>
+        /* التنسيقات الإضافية لصور وصناديق المنتجات */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .product-card {
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .arrow-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: #c2185b;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product-info {
+            text-align: center;
+            margin-top: 12px;
+        }
+        .product-info h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .product-info .price {
+            color: #c2185b;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="logo">GLAMOUR</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'client_home' %}" class="active">الرئيسية</a></li>
+                <li><a href="#categories">الأقسام</a></li>
+                <li><a href="#products">المنتجات</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="{% url 'login' %}" class="btn btn-outline">تسجيل الخروج</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>أهلاً بكِ في <span class="highlight">عالم التجميل</span> الخاص بكِ</h1>
+                <p>تصفحي المنتجات والأقسام الحصرية المختارة لكِ بعناية.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">تصفحي المنتجات</a>
+                    <a href="#categories" class="btn btn-outline">استكشفي الأقسام</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="scalloped-frame">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="خبيرة تجميل">
+                </div>
+                <div class="badge-splash badge-1">✨ Beauty</div>
+                <div class="badge-splash badge-2">💖 Love Yourself</div>
+                <div class="badge-splash badge-3">🌟 Glow</div>
+                <div class="badge-splash badge-4">💄 Shine</div>
+            </div>
+        </section>
+
+        <!-- قسم الأقسام الديناميكية -->
+        <section class="products-section" id="categories" style="margin-bottom: 50px;">
+            <h2 class="section-title">أقسام المتجر</h2>
+            <div class="categories-grid">
+                <a href="{% url 'client_home' %}#products" class="category-card">
+                    <h4>الكل</h4>
+                    <p class="category-desc">عرض جميع منتجات المتجر</p>
+                </a>
+                {% for cat in categories %}
+                    <a href="?category={{ cat.id }}#products" class="category-card">
+                        <h4>{{ cat.name }}</h4>
+                        <p class="category-desc">{{ cat.description|default:"قسم مميز للمكياج والتجميل" }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- قسم المنتجات الديناميكية -->
+        <section class="products-section" id="products">
+            <h2 class="section-title">مجموعة المنتجات</h2>
+            <div class="products-grid">
+                {% for product in products %}
+                    <a href="{% url 'product_detail' product.id %}" class="product-card">
+                        <span class="arrow-btn" title="عرض التفاصيل">&#x2199;</span>
+                        
+                        {% if product.image %}
+                            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% elif product.image_url %}
+                            <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <div class="product-image" style="background: #eee; display: flex; align-items: center; justify-content: center; color: #888; border-radius: 12px;">لا توجد صورة</div>
+                        {% endif %}
+
+                        <div class="product-info">
+                            <h3>{{ product.name }}</h3>
+                            <p class="price">{{ product.price }} ر.ي</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p style="color: #666; grid-column: 1 / -1; text-align: center;">لا توجد منتجات متوفرة حالياً في هذا القسم.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+    <script src="{% static 'account/js/script.js' %}"></script>
+</body>
+</html>

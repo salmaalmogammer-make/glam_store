@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} | Glamour</title>
+    <style>
+        body { font-family: sans-serif; background: #f7f3f6; padding: 40px; text-align: center; }
+        .card { background: white; max-width: 500px; margin: auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 12px; }
+        .title { color: #333; margin: 15px 0 10px 0; }
+        .price { color: #c2185b; font-size: 22px; font-weight: bold; }
+        .desc { color: #666; margin: 15px 0; line-height: 1.6; }
+        .back-btn { display: inline-block; margin-top: 15px; color: #c2185b; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        {% if product.image_url %}
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-img">
+        {% else %}
+            <img src="https://via.placeholder.com/300" class="product-img">
+        {% endif %}
+
+        <h1 class="title">{{ product.name }}</h1>
+        <p class="price">{{ product.price }} ر.ي</p>
+        <p class="desc">{{ product.description }}</p>
+
+        <a href="{% url 'client_home' %}" class="back-btn">← العودة للمتجر</a>
+    </div>
+
+</body>
+</html>

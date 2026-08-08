@@ -1,0 +1,325 @@
+:root {
+    --bg-outer: #9A6B93;
+    --bg-inner: #F8EEF4;
+    --primary-accent: #D91EBE;
+    --secondary-accent: #F46BCF;
+    --white: #FFFFFF;
+    --text-main: #111111;
+    --text-secondary: #666666;
+    --border-color: #CFCFCF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: var(--bg-outer);
+    padding: 20px;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* ==========================================
+   1. تنسيقات الصفحة الأولى (Index & Home)
+   ========================================== */
+.page-container {
+    background-color: var(--bg-inner);
+    width: 100%;
+    max-width: 1280px;
+    border-radius: 32px;
+    padding: 24px 48px 64px 48px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    margin: 20px auto;
+}
+
+/* Navbar ممركّز بالوسط ومُعدل */
+.navbar, header {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    margin-bottom: 48px;
+    padding: 20px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.centered-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.centered-navbar .logo, header h1, header .logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #d63384;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+}
+
+/* إلغاء القوائم العمودية والنقاط نهائياً وترتيبها أفقياً */
+.centered-navbar .nav-links,
+.centered-navbar ul,
+header ul,
+header nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 28px !important;
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.centered-navbar .nav-links li,
+.centered-navbar ul li,
+header ul li,
+header nav ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    display: inline-block !important;
+    margin: 0 !important;
+}
+
+.nav-links a,
+header ul li a,
+header nav ul li a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+header ul li a:hover {
+    color: #d63384;
+}
+
+/* الأزرار العامة */
+.btn {
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: #d63384;
+    color: #d63384;
+}
+
+.btn-primary {
+    background: #d63384;
+    color: var(--white);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #b8236b;
+}
+
+/* زر تسجيل الخروج */
+header ul li a.logout-btn, 
+header nav ul li a[href*="login"],
+.nav-links a.logout-btn, 
+.nav-links a[href*="login"] {
+    color: #d32f2f !important;
+    border: 1px solid #d32f2f !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+}
+
+/* قسم البطل Hero Section */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 .highlight {
+    color: #d63384;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* إطار الصورة واللمسات الدائرية */
+.hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.scalloped-frame {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 12px 32px rgba(214, 51, 132, 0.15);
+    border: 6px dashed var(--secondary-accent);
+}
+
+.scalloped-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.badge-splash {
+    position: absolute;
+    background: var(--white);
+    color: #d63384;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.badge-1 { top: 5%; right: 10px; }
+.badge-2 { bottom: 10%; right: 20px; }
+.badge-3 { top: 15%; left: 10px; }
+.badge-4 { bottom: 5%; left: 30px; }
+
+/* ==========================================
+   2. تنسيقات صفحة تسجيل الدخول (Login Page)
+   ========================================== */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 40px);
+}
+
+.login-card {
+    background-color: var(--white);
+    padding: 40px 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.brand-header {
+    margin-bottom: 25px;
+}
+
+.brand-header h1 {
+    color: #d63384;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.brand-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #d63384;
+}
+
+.btn-beauty, button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #d63384;
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-beauty:hover, button[type="submit"]:hover {
+    background-color: #b8236b;
+}
+
+.register-link {
+    display: block;
+    margin-bottom: 20px;
+    color: #d63384;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #d63384;
+    text-decoration: underline;
+}

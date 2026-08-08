@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Makeup | مرحباً بكِ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Navbar ممركّز بالوسط -->
+        <header class="navbar centered-navbar">
+            <div class="logo">GLAMOUR</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+            </ul>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>اكتشفي سر <span class="highlight">جمالك</span> الطبيعي مع لمسات الاحتراف</h1>
+                <p>استكشفي أرقى مستحضرات التجميل، الأقسام المتنوعة، والدروس الإرشادية المصممة لإبراز أنوثتك وزيادة ثقتك بنفسك.</p>
+                <div class="hero-buttons">
+                    <a href="{% url 'login' %}" class="btn btn-primary">تسجيل الدخول</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="scalloped-frame">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="خبيرة تجميل">
+                </div>
+                <div class="badge-splash badge-1">✨ Beauty</div>
+                <div class="badge-splash badge-2">💖 Love Yourself</div>
+                <div class="badge-splash badge-3">🌟 Glow</div>
+                <div class="badge-splash badge-4">💄 Shine</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{% static 'account/js/script.js' %}"></script>
+</body>
+</html>
